@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Opportunities</h1>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a type="btn" class="btn btn-outline-secondary" href="{% url 'add_opp' %}">New</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Opportunity Name</th>
+        <th scope="col">Account Name</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Opp Owner Name</th>
+        <th scope="col">Stage</th>
+        <th scope="col">Quote Amount</th>
+        <th scope="col">Profit</th>
+        <th scope="col">Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          {% if opportunities %}
+              {% for opportunity in opportunities %}
+                  <tr>
+                      <td><a href="{% url 'opp_record' opportunity.id %}">{{ opportunity.opp_name }}</td>
+                      <td>{{ opportunity.account_name}}</td>
+                      <td>{{ opportunity.created_at }}</td>
+                      <td>{{ opportunity.opp_owner }}</td>
+                      <td>{{ opportunity.stage }}</td>
+                      <td>{{ opportunity.quote_amount }}</td>
+                      <td>{{ opportunity.profit }}</td>
+                      <td>{{ opportunity.id }}</td>
+                  </tr>
+      {% endfor %}
+      {% endif %}
+
+      </tr>
+    </tbody>
+  </table>
+
+
+{% endblock %}

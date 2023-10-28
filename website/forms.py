@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Record
+from .models import Record, Opportunities
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}))
@@ -34,15 +34,33 @@ class SignUpForm(UserCreationForm):
 
 # Creat add_record form
 class AddRecordForm(forms.ModelForm):
-    first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}), label="")
-    last_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Last Name", "class":"form-control"}), label="")
-    email = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Email", "class":"form-control"}), label="")
-    phone = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Phone", "class":"form-control"}), label="")
-    address = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Address", "class":"form-control"}), label="")
-    city = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"City", "class":"form-control"}), label="")
-    state = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"State", "class":"form-control"}), label="")
-    zipcode = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Zipcode", "class":"form-control"}), label="")
     
     class Meta:
         model = Record
         exclude = ("user",)
+        fields = ('first_name', 'last_name', 'email', 'phone', 'address', 'city', 'state', 'zipcode', 'customer_type')
+        labels = ""
+        widgets = {
+            'first_name': forms.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}),
+            'last_name': forms.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}),
+            'email': forms.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}),
+            'phone': forms.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}),
+            'address': forms.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}),
+            'city': forms.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}),
+            'state': forms.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}),
+            'zipcode': forms.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}),
+            'customer_type': forms.Select(attrs={"class":"form-control form-select"})
+        }
+        
+        
+class AddOppForm(forms.ModelForm):
+    class Meta:
+        model = Opportunities
+        fields = ('opp_name', 'account_name', 'stage', 'quote_amount', 'profit')
+        widgets = {
+            'opp_name': forms.TextInput(attrs={"placeholder":"Opportunity Name", "class":"form-control"}),
+            'account_name': forms.Select(attrs={"placeholder":"Account Name", "class":"form-control"}),
+            'stage': forms.Select(attrs={"placeholder":"Stage", "class":"form-control"}),
+            'quote_amount': forms.NumberInput(attrs={"class":"form-control"}),
+            'profit': forms.NumberInput(attrs={"class":"form-control"})
+        }

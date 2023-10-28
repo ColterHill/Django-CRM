@@ -22,13 +22,17 @@
     <p class="card-text">
         <strong>Created Date: </strong>{{ customer_record.created_at }} </p>
     <p class="card-text">
+        <strong>Primary Rep: </strong>{{ customer_record.primary_rep }} </p> 
+    <p class="card-text">
+        <strong>Customer Type: </strong>{{ customer_record.customer_type }} </p> 
+    <p class="card-text">
         <strong>Record Id: </strong>{{ customer_record.id }} </p>
   </div>
 </div>
 
 <br><br>
 
-<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+<a href="{% url 'accounts' %}" class="btn btn-secondary">Back</a>
 
 <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">DELETE</a>
 

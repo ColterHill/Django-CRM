@@ -10,5 +10,10 @@ urlpatterns = [
     path('record/<int:pk>', views.customer_record, name='record'),
     path('delete_record/<int:pk>', views.delete_record, name='delete_record'),
     path('add_record/', views.add_record, name='add_record'),
-    path('update_record/<int:pk>', views.update_record, name='update_record')
+    path('update_record/<int:pk>', views.update_record, name='update_record'),
+    path('products/', views.products, name='products'),
+    path('accounts/', views.accounts, name='accounts'),
+    path('opportunities/', views.opportunities, name='opportunities'),
+    path('add_opp/', views.add_opp, name='add_opp'),
+    path('opp_record/<int:pk>', views.opp_record, name='opp_record'),
 ]
